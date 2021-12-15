@@ -15,10 +15,11 @@ spec:
         value: $(params.header)
       - name: BODY
         value: $(params.body)
-    image: icr.io/continuous-delivery/pipeline/pipeline-base-ubi:3.0
+    image: registry.access.redhat.com/ubi8:latest
     script: |
       #!/usr/bin/env bash
       set -e
+      yum update -y && yum install jq -y
       echo HEADER
       echo "------"
       echo $HEADER | jq .
